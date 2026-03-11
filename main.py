@@ -7,6 +7,7 @@ from ultralytics import YOLO
 def detect_cats(img_path: str):
     if not os.path.exists("models"):
         os.makedirs("models")
+        print("Загрузка модели YOLOv8...")
 
     model = YOLO("models/yolov8n.pt")
 
