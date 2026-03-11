@@ -26,6 +26,12 @@ source .venv/bin/activate
 .venv\Scripts\activate
 ```
 
+Установите зависимости:
+```bash
+pip install -r requirements.txt
+```
+
+
 ## Использование
 
 ```bash
