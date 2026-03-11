@@ -33,12 +33,23 @@ def detect_cats(img_path: str):
             avg_color = numpy.mean(cat, axis=(0,1))
             b, g, r = avg_color
 
-            if r > 150 and g > 120 and b < 100:
-                color = "orange"
-            elif r < 100 and g < 100 and b < 100:
-                color = "black"
-            elif r > 200 and g > 200 and b > 200:
+            r_norm = r / 255
+            g_norm = g / 255
+            b_norm = b / 255
+            
+            max_color = max(r_norm, g_norm, b_norm)
+            min_color = min(r_norm, g_norm, b_norm)
+            saturation = (max_color - min_color) / max_color if max_color > 0 else 0
+            brightness = (r_norm + g_norm + b_norm) / 3
+            
+            if brightness > 0.7:
                 color = "white"
+            elif brightness < 0.2:
+                color = "black"
+            elif saturation < 0.2:
+                color = "gray"
+            elif r_norm > g_norm and r_norm > b_norm and r_norm > 0.4:
+                color = "orange"
             else:
                 color = "mixed"
 
